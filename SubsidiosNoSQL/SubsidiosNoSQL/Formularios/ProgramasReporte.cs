@@ -63,12 +63,12 @@ namespace SubsidiosNoSQL.Formularios
 
         private void IrProgramas_Click(object sender, EventArgs e)
         {
-            //int infoMes = Convert.ToInt32(listBoxMesProgramas.SelectedItem!);
-            //int infoAño = Convert.ToInt32(listBoxAñoProgramas.SelectedItem!.ToString()!);
-            //String infoDepartamento = listBoxDepartamentosProgramas.SelectedItem!.ToString()!;
-            //String infoPrograma = listBoxProgramaProgramas.SelectedItem!.ToString()!;
-            //textBoxCantidadBeneficiariosProgramas.Text = AccesoDatos.ObtenerCantidadBeneficiarios(infoPrograma, infoMes, infoAño, infoDepartamento).ToString();
-            //textBoxValorProgramas.Text = AccesoDatos.ObtenerValor(infoPrograma, infoMes, infoAño, infoDepartamento).ToString();
+            int infoMes = Convert.ToInt32(listBoxMesProgramas.SelectedItem!);
+            int infoAño = Convert.ToInt32(listBoxAñoProgramas.SelectedItem!.ToString()!);
+            String infoDepartamento = listBoxDepartamentosProgramas.SelectedItem!.ToString()!;
+            String infoPrograma = listBoxProgramaProgramas.SelectedItem!.ToString()!;
+            textBoxCantidadBeneficiariosProgramas.Text = AccesoDatos.ObtenerCantidadBeneficiarios(infoPrograma, infoMes, infoAño, infoDepartamento).ToString();
+            textBoxValorProgramas.Text = AccesoDatos.ObtenerValor(infoPrograma, infoMes, infoAño, infoDepartamento).ToString();
         }
     }
 }

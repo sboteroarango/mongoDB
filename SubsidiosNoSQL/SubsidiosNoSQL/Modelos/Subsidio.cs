@@ -22,10 +22,10 @@ namespace Subsidios.Modelos
         public long beneficiario { get; set; }
 
         [BsonElement("MES")]
-        public int? mes { get; set; }
+        public int mes { get; set; }
 
         [BsonElement("AÑO")]
-        public int? año { get; set; }
+        public int año { get; set; }
 
         [BsonElement("VALOR ASIGNADO")]
         public int? valorAsignado { get; set; }

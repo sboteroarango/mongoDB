@@ -508,7 +508,7 @@ namespace SubsidiosNoSQL
             return listaNombres;
         }
 
-        //public static int ObtenerCantidadBeneficiarios(string programa,int mes, int año, string departamento)
+        //public static int ObtenerCantidadBeneficiarios(string programa, int mes, int año, string departamento)
         //{
         //    int cantidadBeneficiarios = 0;
         //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
@@ -523,10 +523,10 @@ namespace SubsidiosNoSQL
         //        parametrosSentencia.Add("@nombre_programa", programa,
         //            DbType.String, ParameterDirection.Input);
 
-        //        cantidadBeneficiarios = cxnDB.Query<int>("select COUNT(PROGRAMA) from SUBSIDIOS"+
-        //            " INNER JOIN PROGRAMAS on SUBSIDIOS.PROGRAMA = PROGRAMAS.ID INNER JOIN BENEFICIARIOS"+
-        //            " ON SUBSIDIOS.BENEFICIARIO = BENEFICIARIOS.ID INNER JOIN MUNICIPIOS ON"+
-        //            " BENEFICIARIOS.MUNICIPIO = MUNICIPIOS.ID INNER JOIN DEPARTAMENTOS ON MUNICIPIOS.DEPARTAMENTO = DEPARTAMENTOS.ID WHERE NOMBRE = @nombre_programa AND NOMBREDEPARTAMENTO = @nombre_departamento"+
+        //        cantidadBeneficiarios = cxnDB.Query<int>("select COUNT(PROGRAMA) from SUBSIDIOS" +
+        //            " INNER JOIN PROGRAMAS on SUBSIDIOS.PROGRAMA = PROGRAMAS.ID INNER JOIN BENEFICIARIOS" +
+        //            " ON SUBSIDIOS.BENEFICIARIO = BENEFICIARIOS.ID INNER JOIN MUNICIPIOS ON" +
+        //            " BENEFICIARIOS.MUNICIPIO = MUNICIPIOS.ID INNER JOIN DEPARTAMENTOS ON MUNICIPIOS.DEPARTAMENTO = DEPARTAMENTOS.ID WHERE NOMBRE = @nombre_programa AND NOMBREDEPARTAMENTO = @nombre_departamento" +
         //            " and AÑO = @nombre_año and mes = @nombre_mes", parametrosSentencia).FirstOrDefault();
         //    }
         //    return cantidadBeneficiarios;
@@ -564,7 +564,7 @@ namespace SubsidiosNoSQL
         //        DynamicParameters parametrosSentencia = new DynamicParameters();
         //        parametrosSentencia.Add("@idSubsidio", idSubsidio,
         //        DbType.String, ParameterDirection.Input);
-             
+
 
         //        cantidadBeneficiarios = cxnDB.Query<int>("SELECT COUNT(PROGRAMA) FROM SUBSIDIOS WHERE ID = @idSubsidio", parametrosSentencia).FirstOrDefault();
         //    }
@@ -586,97 +586,96 @@ namespace SubsidiosNoSQL
         //    return cvalor;
         //}
 
-        //public static int ObtenerMes(string idSubsidio)
-        //{
-        //    int mes = 0;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idSubsidio", idSubsidio,
-        //        DbType.String, ParameterDirection.Input);
+        public static int ObtenerMes(string idSubsidio)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "ID", idSubsidio } };
 
+            Subsidio sdo = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return sdo.mes;
+        }
+        public static string ObtenerIdPrograma(string programa)
+            {
 
-        //        mes = cxnDB.Query<int>("SELECT mes FROM SUBSIDIOS WHERE ID = @idSubsidio", parametrosSentencia).FirstOrDefault();
-        //    }
-        //    return mes;
-        //}
-        //public static string ObtenerIdPrograma(string programa)
-        //{
-            
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@nombre_programa", programa,
-        //        DbType.String, ParameterDirection.Input);
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionProgramas = configDB.programasCollectionName;
+            var filtro = new BsonDocument { { "NOMBRE", programa } };
 
+            Programa pgm = miDB.GetCollection<Programa>(coleccionProgramas)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return pgm.Codigo.ToString();
+        }
 
-        //        programa = cxnDB.Query<string>("SELECT id FROM programas WHERE NOMBRE = @nombre_programa", parametrosSentencia).FirstOrDefault();
-        //    }
-        //    return programa;
-        //}
+        public static int ObtenerIdDepartamento(string departamento)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionDepartamentos = configDB.departamentosCollectionName;
+            var filtro = new BsonDocument { { "NOMBREDEPARTAMENTO", departamento } };
 
-        //public static int ObtenerIdDepartamento(string departamento)
-        //{
-        //    int departamentoId;
-
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@nombre_departamento", departamento,
-        //        DbType.String, ParameterDirection.Input);
-
-
-        //        departamentoId = cxnDB.Query<int>("SELECT id FROM departamentos WHERE NOMBREDEPARTAMENTO = @nombre_departamento", parametrosSentencia).FirstOrDefault();
-        //    }
-        //    return departamentoId;
-        //}
+            Departamento dpto = miDB.GetCollection<Departamento>(coleccionDepartamentos)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return dpto.codigo;
+        }
 
 
 
-        //public static int ObtenerAño(string idSubsidio)
-        //{
-        //    int año = 0;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idSubsidio", idSubsidio,
-        //        DbType.String, ParameterDirection.Input);
+        public static int ObtenerAño(string idSubsidio)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "ID", idSubsidio } };
 
+            Subsidio sdo = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return sdo.año;
+        }
 
-        //        año = cxnDB.Query<int>("SELECT AÑO FROM SUBSIDIOS WHERE ID = @idSubsidio", parametrosSentencia).FirstOrDefault();
-        //    }
-        //    return año;
-        //}
+        public static string ObtenerPrograma(string idSubsidio)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "ID", idSubsidio } };
 
-        //public static string ObtenerPrograma(string idSubsidio)
-        //{
-        //    string programa;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idSubsidio", idSubsidio,
-        //        DbType.String, ParameterDirection.Input);
+            Subsidio sdo = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return sdo.programa.ToString();
+        }
 
+        public static List<string> ObtenerMesesBeneficiario(string idBeneficiarios)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "BENEFICIARIO", idBeneficiarios } };
 
-        //        programa = cxnDB.Query<string>("SELECT PROGRAMA FROM SUBSIDIOS WHERE ID = @idSubsidio", parametrosSentencia).FirstOrDefault();
-        //    }
-        //    return programa;
-        //}
+            var listaSubsidios = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList();
 
-        //public static List<string> ObtenerMesesBeneficiario(string idBeneficiarios)
-        //{
-        //    List<string> meses;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idBeneficiario", idBeneficiarios,
-        //        DbType.String, ParameterDirection.Input);
+            List<string> listaMeses = new List<string>();
 
+            foreach (Subsidio unSubsidio in listaSubsidios)
+                listaMeses.Add(unSubsidio.mes!.ToString());
 
-        //        meses = cxnDB.Query<string>("SELECT MES FROM SUBSIDIOS WHERE BENEFICIARIO = @idBeneficiario", parametrosSentencia).AsList();
-        //    }
-        //    return meses;
-        //}
+            return listaMeses;
+        }
 
         //public static List<string> ObtenerAñosBeneficiario(string idBeneficiarios)
         //{
@@ -747,7 +746,7 @@ namespace SubsidiosNoSQL
         //            " BENEFICIARIOS.MUNICIPIO = MUNICIPIOS.ID INNER JOIN DEPARTAMENTOS ON MUNICIPIOS.DEPARTAMENTO = DEPARTAMENTOS.ID WHERE NOMBRE = @nombre_programa AND NOMBREDEPARTAMENTO = @nombre_departamento" +
         //            " and AÑO = @nombre_año and mes = @nombre_mes", parametrosSentencia).FirstOrDefault();
         //        }
-                
+
 
         //        catch (Exception ex)
         //        {
