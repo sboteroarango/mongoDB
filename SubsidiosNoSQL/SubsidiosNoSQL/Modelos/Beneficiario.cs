@@ -15,7 +15,7 @@ namespace Subsidios.Modelos
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
         [BsonElement("ID")]
-        public int? codigo { get; set; }
+        public long codigo { get; set; }
         [BsonElement("MUNICIPIO")]
         public string? municipio { get; set;}
 

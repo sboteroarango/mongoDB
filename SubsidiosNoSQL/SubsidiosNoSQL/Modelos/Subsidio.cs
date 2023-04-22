@@ -28,7 +28,7 @@ namespace Subsidios.Modelos
         public int año { get; set; }
 
         [BsonElement("VALOR ASIGNADO")]
-        public int? valorAsignado { get; set; }
+        public int valorAsignado { get; set; }
 
         [BsonElement("ID")]
         public int? codigo { get; set; }

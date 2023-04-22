@@ -53,55 +53,93 @@ namespace SubsidiosNoSQL
 
             var listaDepartamentos = miDB.GetCollection<Departamento>(coleccionDepartamentos)
                 .Find(new BsonDocument())
-                //.SortBy(departo => dpto.nombre)
+                .SortBy(dpto => dpto.nombre)
                 .ToList();
 
             List<string> listaNombres = new List<string>();
 
             foreach (Departamento unDepartamento in listaDepartamentos)
                 listaNombres.Add(unDepartamento.nombre!);
-            
+
             return listaNombres;
         }
-        //TODO departamento, meses, años, programas, con eso sacar cantidad de beneficiario y valor
 
-        //public static List<string> ObtenerListaMunicipios()
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        string sentenciaSQL = "select NOMBREMUNICIPIO from municipios ORDER by NOMBREMUNICIPIO";
-        //        var resultadoMunicipios = cxnDB.Query<string>(sentenciaSQL, new DynamicParameters());
-        //        return resultadoMunicipios.AsList();
-        //    }
-        //}
-        //public static List<string> ObtenerListaIdMunicipios()
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        string sentenciaSQL = "select ID from municipios";
-        //        var resultadoMunicipios = cxnDB.Query<string>(sentenciaSQL, new DynamicParameters());
-        //        return resultadoMunicipios.AsList();
-        //    }
-        //}
-        //public static List<string> ObtenerListaBeneficiarios()
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        string sentenciaSQL = "SELECT ID FROM beneficiarios ORDER BY ID";
-        //        var resultadoBeneficiarios = cxnDB.Query<string>(sentenciaSQL, new DynamicParameters());
-        //        return resultadoBeneficiarios.AsList();
-        //    }
-        //}
-        //public static List<string> ObtenerListaSubsidios()
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        string sentenciaSQL = "SELECT ID FROM subsidios ORDER BY ID";
-        //        var resultadoDepartamentos = cxnDB.Query<string>(sentenciaSQL, new DynamicParameters());
-        //        return resultadoDepartamentos.AsList();
-        //    }
-        //}
-        
+
+        public static List<string> ObtenerListaMunicipios()
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionMunicipios = configDB.municipiosCollectionName;
+
+            var listaMunicipios = miDB.GetCollection<Municipio>(coleccionMunicipios)
+                .Find(new BsonDocument())
+                .SortBy(municipio => municipio.nombre)
+                .ToList();
+
+            List<string> listaNombres = new List<string>();
+
+            foreach (Municipio unMunicipio in listaMunicipios)
+                listaNombres.Add(unMunicipio.nombre!);
+
+            return listaNombres;
+        }
+        public static List<string> ObtenerListaIdMunicipios()
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionMunicipios = configDB.municipiosCollectionName;
+
+            var listaMunicipios = miDB.GetCollection<Municipio>(coleccionMunicipios)
+                .Find(new BsonDocument())
+                .SortBy(municipio => municipio.codigo)
+                .ToList();
+
+            List<string> listaNombres = new List<string>();
+
+            foreach (Municipio unMunicipio in listaMunicipios)
+                listaNombres.Add(unMunicipio.codigo!);
+
+            return listaNombres;
+        }
+        public static List<string> ObtenerListaBeneficiarios()
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
+
+            var listaBeneficiarios = miDB.GetCollection<Beneficiario>(coleccionBeneficiarios)
+                .Find(new BsonDocument())
+                .SortBy(beneficiario => beneficiario.codigo)
+                .ToList();
+
+            List<string> listaNombres = new List<string>();
+
+            foreach (Beneficiario unBeneficiario in listaBeneficiarios)
+                listaNombres.Add(unBeneficiario.codigo!.ToString());
+
+            return listaNombres;
+        }
+        public static List<string> ObtenerListaSubsidios()
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+
+            var listaSubsidios = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(new BsonDocument())
+                .SortBy(sdo => sdo.codigo)
+                .ToList();
+
+            List<string> listaNombres = new List<string>();
+
+            foreach (Subsidio unSubsidio in listaSubsidios)
+            {
+                listaNombres.Add(unSubsidio.codigo.ToString());
+            }
+            return listaNombres;
+
+        }
+
         public static List<string> ObtenerListaMeses()
         {
             var clienteDB = new MongoClient(configDB.ConnectionString);
@@ -115,92 +153,168 @@ namespace SubsidiosNoSQL
             List<string> listaNombres = new List<string>();
 
             foreach (Subsidio unSubsidio in listaSubsidios) {
-                if (!listaNombres.Contains(unSubsidio.mes.ToString())){
+                if (!listaNombres.Contains(unSubsidio.mes.ToString())) {
                     listaNombres.Add(unSubsidio.mes!.ToString());
                 }
             }
             return listaNombres;
         }
 
-        //public static void ActualizarProgramas(string programa,string actualizacion)
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        string actualizaProgramasSql = $"UPDATE programas SET nombre = '{actualizacion}' " +
-        //                                                $"WHERE nombre = '{programa}'";
+        public static void ActualizarProgramas(string programa, string actualizacion)
+        {
 
-        //        int cantidadFilas = cxnDB.Execute(actualizaProgramasSql);
-        //    }
-        //}
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionProgramas = configDB.programasCollectionName;
+            Programa unPrograma = new Programa();
+            unPrograma.Id = ObtenerObjectIdPrograma(programa);
+            unPrograma.Nombre = actualizacion;
+            unPrograma.Codigo = Convert.ToInt32(ObtenerIdPrograma(programa));
 
-        //public static void ActualizarMunicipios(string municipio, string actualizacion)
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        string actualizamunicipiosSql = $"UPDATE municipios SET NOMBREMUNICIPIO = '{actualizacion}' " +
-        //                                                $"WHERE NOMBREMUNICIPIO = '{municipio}'";
+            var miColeccion = miDB.GetCollection<Programa>(coleccionProgramas);
+            var resultadoActualizacion = miColeccion.ReplaceOne(documento => documento.Nombre == programa,
+                unPrograma);
 
-        //        int cantidadFilas = cxnDB.Execute(actualizamunicipiosSql);
-        //    }
-        //}
+        }
 
-        //public static void ActualizarDepartamentos(string departamento, string actualizacion)
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        string actualizaDepartamentoSql = $"UPDATE departamentos SET NOMBREDEPARTAMENTO = '{actualizacion}' " +
-        //                                                $"WHERE NOMBREDEPARTAMENTO = '{departamento}'";
+        public static void ActualizarMunicipios(string municipio, string actualizacion)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionMunicipios = configDB.municipiosCollectionName;
+            Municipio unMunicipio = new Municipio();
+            unMunicipio.Id = ObtenerObjectIdMunicipio(municipio);
+            unMunicipio.codigo = ObtenerIdMunicipio(municipio);
+            unMunicipio.nombre = actualizacion;
+            unMunicipio.departamento = ObtenerDepartamentoMunicipio(municipio);
 
-        //        int cantidadFilas = cxnDB.Execute(actualizaDepartamentoSql);
-        //    }
-        //}
+            var miColeccion = miDB.GetCollection<Municipio>(coleccionMunicipios);
+            var resultadoActualizacion = miColeccion.ReplaceOne(documento => documento.nombre == municipio,
+                unMunicipio);
+        }
 
-        //public static void ActualizarBeneficiarios(string beneficiario, string actualizacion)
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-                
-        //        string actualizaProgramasSql = $"UPDATE beneficiarios SET id = {actualizacion} " +
-        //                                                $"WHERE id = {beneficiario}";
+        public static string ObtenerObjectIdMunicipio(string municipio)
+        {
 
-        //        int cantidadFilas = cxnDB.Execute(actualizaProgramasSql);
-        //    }
-        //}
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionMunicipios = configDB.municipiosCollectionName;
+            var filtro = new BsonDocument { { "NOMBREMUNICIPIO", municipio } };
 
-        //public static bool ExisteBeneficiario(string beneficiario)
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idBeneficiario", beneficiario,
-        //            DbType.String, ParameterDirection.Input);
+            Municipio mpo = miDB.GetCollection<Municipio>(coleccionMunicipios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return mpo.Id!;
+        }
 
-        //        string cantidadBeneficiarios = cxnDB.Query<string>("select count(id) from beneficiarios where id = @idBeneficiario", parametrosSentencia).FirstOrDefault();
-        //        if (cantidadBeneficiarios.Equals("0"))
-        //        {
-        //            return false;
-        //        }
-        //        else
-        //        {
-        //            return true;
-        //        }
+        public static string ObtenerIdMunicipio(string municipio)
+        {
 
-        //    }
-        //}
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionMunicipios = configDB.municipiosCollectionName;
+            var filtro = new BsonDocument { { "NOMBREMUNICIPIO", municipio } };
+
+            Municipio mpo = miDB.GetCollection<Municipio>(coleccionMunicipios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return mpo.codigo!;
+        }
+
+        public static string ObtenerDepartamentoMunicipio(string municipio)
+        {
+
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionMunicipios = configDB.municipiosCollectionName;
+            var filtro = new BsonDocument { { "NOMBREMUNICIPIO", municipio } };
+
+            Municipio mpo = miDB.GetCollection<Municipio>(coleccionMunicipios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return mpo.departamento!;
+        }
 
 
-        //public static void ActualizarSubsidios(string programa, string año, string mes, string id, string valor,string beneficiario)
-        //{
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        programa = ObtenerIdPrograma(programa);
-        //        string actualizaProgramasSql = $"UPDATE subsidios SET programa = {programa}, " +
-        //            $"AÑO = {año},mes={mes},[VALOR ASIGNADO]={valor},BENEFICIARIO = {beneficiario} "+
-        //                                                $"WHERE id = '{id}'";
 
-        //        int cantidadFilas = cxnDB.Execute(actualizaProgramasSql);
-        //    }
-        //}
+        public static void ActualizarDepartamentos(string departamento, string actualizacion)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionDepartamentos = configDB.departamentosCollectionName;
+            Departamento unDepartamento = new Departamento();
+            unDepartamento.Id = ObtenerObjectIdDepartamento(departamento);
+            unDepartamento.codigo = ObtenerIdDepartamento(departamento);
+            unDepartamento.nombre = actualizacion;
+          
+
+            var miColeccion = miDB.GetCollection<Departamento>(coleccionDepartamentos);
+            var resultadoActualizacion = miColeccion.ReplaceOne(documento => documento.nombre == departamento,
+                unDepartamento);
+        }
+
+        public static void ActualizarBeneficiarios(string beneficiario, string actualizacion)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
+            Beneficiario unBeneficiario = new Beneficiario();
+            unBeneficiario.Id = ObtenerObjectIdBeneficiario(beneficiario);
+            unBeneficiario.codigo = Convert.ToInt32(actualizacion);
+            unBeneficiario.municipio = ObtenerMunicipioBeneficiario(beneficiario);
+            
+
+
+            var miColeccion = miDB.GetCollection<Beneficiario>(coleccionBeneficiarios);
+            var resultadoActualizacion = miColeccion.ReplaceOne(documento => documento.codigo == Convert.ToInt32(beneficiario),
+                unBeneficiario);
+        }
+
+        public static bool ExisteBeneficiario(string beneficiario)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
+            var filtro = new BsonDocument { { "ID", beneficiario } };
+
+            var listaBeneficiarios = miDB.GetCollection<Beneficiario>(coleccionBeneficiarios)
+                .Find(filtro)
+                .ToList();
+
+            List<string> listaNombres = new List<string>();
+
+            foreach (Beneficiario unBeneficiario in listaBeneficiarios)
+                listaNombres.Add(unBeneficiario.codigo!.ToString());
+
+            return listaNombres.Count == 0;
+
+        }
+
+
+
+        public static void ActualizarSubsidios(string programa, string año, string mes, string id, string valor, string beneficiario)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            Subsidio unSubsidio = new Subsidio();
+            unSubsidio.Id = ObtenerObjectIdSubsidio(id);
+            unSubsidio.codigo = Convert.ToInt32(id);
+            unSubsidio.programa = Convert.ToInt32(programa);
+            unSubsidio.beneficiario = Convert.ToInt32(beneficiario);
+            unSubsidio.mes = Convert.ToInt32(mes);
+            unSubsidio.año = Convert.ToInt32(año);
+            unSubsidio.valorAsignado = Convert.ToInt32(valor);
+
+
+
+            var miColeccion = miDB.GetCollection<Subsidio>(coleccionSubsidios);
+            var resultadoActualizacion = miColeccion.ReplaceOne(documento => documento.codigo == Convert.ToInt32(id),
+                unSubsidio);
+        }
 
         //public static void AñadirSubsidios(string programa, string año, string mes, string valor, string beneficiario)
         //{
@@ -208,7 +322,7 @@ namespace SubsidiosNoSQL
         //    {
         //        programa = ObtenerIdPrograma(programa);
         //        string subsidioFinal = ObtenerListaSubsidios().Last();
-               
+
         //        string añadeProgramasSql = $"INSERT INTO subsidios (programa,beneficiario,mes,AÑO," +
         //            $"[VALOR ASIGNADO],id)  VALUES ({programa},{beneficiario},{mes},{año},{valor},{Convert.ToInt32(subsidioFinal) + 1})";
 
@@ -223,7 +337,7 @@ namespace SubsidiosNoSQL
         //        string programaFinal = ObtenerListaProgramas().Last();
         //        string idFinal = ObtenerIdPrograma(programaFinal);
         //        bool programaYaExiste = ObtenerListaProgramas().Contains(programa);
-   
+
         //        if (programaYaExiste){
         //            success = false;
         //        }
@@ -234,7 +348,7 @@ namespace SubsidiosNoSQL
         //            int cantidadFilas = cxnDB.Execute(añadeProgramasSql);
         //        }
         //        return success;
-            
+
         //    }
         //}
 
@@ -243,8 +357,8 @@ namespace SubsidiosNoSQL
         //    bool success = true;
         //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
         //    {
-             
-                
+
+
         //        bool idMunicipioYaExiste = ObtenerListaIdMunicipios().Contains(idMunicipio);
         //        bool municipioYaExiste = ObtenerListaMunicipios().Contains(municipio);
 
@@ -293,7 +407,7 @@ namespace SubsidiosNoSQL
         //    bool success = true;
         //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
         //    {
-               
+
         //        bool beneficiarioYaExiste = ObtenerListaBeneficiarios().Contains(idBeneficiario);
 
         //        if (beneficiarioYaExiste)
@@ -324,7 +438,8 @@ namespace SubsidiosNoSQL
         //        cantidadSubsidios = cxnDB.Query<int>("SELECT count(programa) from SUBSIDIOS inner join PROGRAMAS on PROGRAMAS.ID = SUBSIDIOS.PROGRAMA where nombre = @nombre_programa", parametrosSentencia).FirstOrDefault();
 
         //    }
-        //    if (cantidadSubsidios.Equals(0)){
+        //    if (cantidadSubsidios.Equals(0))
+        //    {
         //        tiene = false;
         //    }
         //    return tiene;
@@ -571,20 +686,19 @@ namespace SubsidiosNoSQL
         //    return cantidadBeneficiarios;
         //}
 
-        //public static int ObtenerValor(string idSubsidio)
-        //{
-        //    int cvalor = 0;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idSubsidio", idSubsidio,
-        //        DbType.String, ParameterDirection.Input);
+        public static int ObtenerValor(string idSubsidio)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "ID", idSubsidio } };
 
-
-        //        cvalor = cxnDB.Query<int>("SELECT [VALOR ASIGNADO] FROM SUBSIDIOS WHERE ID = @idSubsidio", parametrosSentencia).FirstOrDefault();
-        //    }
-        //    return cvalor;
-        //}
+            Subsidio sdo = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return sdo.valorAsignado;
+        }
 
         public static int ObtenerMes(string idSubsidio)
         {
@@ -600,7 +714,7 @@ namespace SubsidiosNoSQL
             return sdo.mes;
         }
         public static string ObtenerIdPrograma(string programa)
-            {
+        {
 
             var clienteDB = new MongoClient(configDB.ConnectionString);
             var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
@@ -612,6 +726,67 @@ namespace SubsidiosNoSQL
                 .ToList()
                 .FirstOrDefault();
             return pgm.Codigo.ToString();
+        }
+
+        public static string ObtenerObjectIdBeneficiario(string beneficiario)
+        {
+
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
+            var filtro = new BsonDocument { { "ID", Convert.ToInt32(beneficiario) } };
+
+            Beneficiario bro = miDB.GetCollection<Beneficiario>(coleccionBeneficiarios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return bro.Id!;
+        }
+
+        public static string ObtenerObjectIdSubsidio(string id)
+        {
+
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "ID", Convert.ToInt32(id) } };
+
+            Subsidio sdo = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return sdo.Id!;
+        }
+
+        
+
+        public static string ObtenerMunicipioBeneficiario(string beneficiario)
+        {
+
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
+            var filtro = new BsonDocument { { "ID", Convert.ToInt32(beneficiario) } };
+
+            Beneficiario bro = miDB.GetCollection<Beneficiario>(coleccionBeneficiarios)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return bro.municipio!;
+        }
+        public static string ObtenerObjectIdPrograma(string programa)
+        {
+
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionProgramas = configDB.programasCollectionName;
+            var filtro = new BsonDocument { { "NOMBRE", programa } };
+
+            Programa pgm = miDB.GetCollection<Programa>(coleccionProgramas)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return pgm.Id!;
         }
 
         public static int ObtenerIdDepartamento(string departamento)
@@ -626,6 +801,20 @@ namespace SubsidiosNoSQL
                 .ToList()
                 .FirstOrDefault();
             return dpto.codigo;
+        }
+
+        public static string ObtenerObjectIdDepartamento(string departamento)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionDepartamentos = configDB.departamentosCollectionName;
+            var filtro = new BsonDocument { { "NOMBREDEPARTAMENTO", departamento } };
+
+            Departamento dpto = miDB.GetCollection<Departamento>(coleccionDepartamentos)
+                .Find(filtro)
+                .ToList()
+                .FirstOrDefault();
+            return dpto.Id!;
         }
 
 
@@ -677,51 +866,63 @@ namespace SubsidiosNoSQL
             return listaMeses;
         }
 
-        //public static List<string> ObtenerAñosBeneficiario(string idBeneficiarios)
-        //{
-        //    List<string> años;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idBeneficiario", idBeneficiarios,
-        //        DbType.String, ParameterDirection.Input);
+        public static List<string> ObtenerAñosBeneficiario(string idBeneficiarios)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "BENEFICIARIO", idBeneficiarios } };
+
+            var listaSubsidios = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList();
+
+            List<string> listaMeses = new List<string>();
+
+            foreach (Subsidio unSubsidio in listaSubsidios)
+                listaMeses.Add(unSubsidio.año!.ToString());
+
+            return listaMeses;
+        }
+
+        public static List<string> ObtenerProgramasBeneficiario(string idBeneficiarios)
+        {
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "BENEFICIARIO", idBeneficiarios } };
+
+            var listaSubsidios = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList();
+
+            List<string> listaMeses = new List<string>();
+
+            foreach (Subsidio unSubsidio in listaSubsidios)
+                listaMeses.Add(unSubsidio.programa!.ToString());
+
+            return listaMeses;
+        }
 
 
-        //        años = cxnDB.Query<string>("SELECT AÑO FROM SUBSIDIOS WHERE BENEFICIARIO = @idBeneficiario", parametrosSentencia).AsList();
-        //    }
-        //    return años;
-        //}
+        public static string ObtenerValorBeneficiario(string idBeneficiarios)
+        {
+          
+            var clienteDB = new MongoClient(configDB.ConnectionString);
+            var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
+            var coleccionSubsidios = configDB.subsidiosCollectionName;
+            var filtro = new BsonDocument { { "BENEFICIARIO", idBeneficiarios } };
 
-        //public static List<string> ObtenerProgramasBeneficiario(string idBeneficiarios)
-        //{
-        //    List<string> programas;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idBeneficiario", idBeneficiarios,
-        //        DbType.String, ParameterDirection.Input);
+            var listaSubsidios = miDB.GetCollection<Subsidio>(coleccionSubsidios)
+                .Find(filtro)
+                .ToList();
 
+            int valorAsignado= 0;
 
-        //        programas = cxnDB.Query<string>("SELECT PROGRAMA FROM SUBSIDIOS WHERE BENEFICIARIO = @idBeneficiario", parametrosSentencia).AsList();
-        //    }
-        //    return programas;
-        //}
-
-
-        //public static string ObtenerValorBeneficiario(string idBeneficiarios)
-        //{
-        //    string valor;
-        //    using (IDbConnection cxnDB = new SQLiteConnection(ObtenerCadenaConexion()))
-        //    {
-        //        DynamicParameters parametrosSentencia = new DynamicParameters();
-        //        parametrosSentencia.Add("@idBeneficiario", idBeneficiarios,
-        //        DbType.String, ParameterDirection.Input);
-
-
-        //        valor = cxnDB.Query<string>("SELECT SUM([VALOR ASIGNADO]) FROM SUBSIDIOS WHERE BENEFICIARIO = @idBeneficiario", parametrosSentencia).LastOrDefault();
-        //    }
-        //    return valor;
-        //}
+            foreach (Subsidio unSubsidio in listaSubsidios)
+                valorAsignado += unSubsidio.valorAsignado;
+            return valorAsignado.ToString();
+        }
 
         //public static int ObtenerValor(string programa, int mes, int año, string departamento)
         //{
