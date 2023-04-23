@@ -1,4 +1,4 @@
-﻿namespace SubsidiosNoSQL.Formularios
+﻿namespace SubsidiosNoSQLNoSQL.Formularios
 {
     partial class Principal
     {
@@ -38,7 +38,7 @@
             // 
             listBoxIdentidades.FormattingEnabled = true;
             listBoxIdentidades.ItemHeight = 25;
-            listBoxIdentidades.Items.AddRange(new object[] { "Programas", "Subsidios", "Beneficiarios", "Municipios", "Departamentos" });
+            listBoxIdentidades.Items.AddRange(new object[] { "Programas", "SubsidiosNoSQL", "Beneficiarios", "Municipios", "Departamentos" });
             listBoxIdentidades.Location = new Point(212, 231);
             listBoxIdentidades.Name = "listBoxIdentidades";
             listBoxIdentidades.Size = new Size(143, 154);
@@ -64,7 +64,7 @@
             label1.Name = "label1";
             label1.Size = new Size(317, 38);
             label1.TabIndex = 2;
-            label1.Text = "Programas De Subsidios";
+            label1.Text = "Programas De SubsidiosNoSQL";
             label1.Click += label1_Click;
             // 
             // Ir
@@ -87,7 +87,7 @@
             Controls.Add(listBoxAcciones);
             Controls.Add(listBoxIdentidades);
             Name = "Principal";
-            Text = "SubsidiosNoSQL";
+            Text = "SubsidiosNoSQLNoSQL";
             Load += Principal_Load_1;
             ResumeLayout(false);
             PerformLayout();

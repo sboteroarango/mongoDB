@@ -1,10 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Formularios\BeneficiariosActualizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\BeneficiariosAñadir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\BeneficiariosBorrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\BeneficiariosReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\DepartamentosActualizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\DepartamentosAñadir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\DepartamentosBorrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\MunicipiosActualizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\MunicipiosAñadir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\MunicipiosBorrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\MunicipiosReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\ProgramasActualizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\ProgramasAñadir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\ProgramasBorrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\ProgramasReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\SubsidiosActualizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\SubsidiosAñadir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\SubsidiosBorrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\SubsidiosReporte.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SubsidiosNoSQL.Formularios
+namespace SubsidiosNoSQLNoSQL.Formularios
 {
     public partial class Principal : Form
     {
@@ -59,27 +59,27 @@ namespace SubsidiosNoSQL.Formularios
             //    ProgramasAñadir abrir = new ProgramasAñadir();
             //    abrir.Show();
             //}
-            //if (infoIdentidad.Equals("SubsidiosNoSQL") & infoAcciones.Equals("Reporte"))
+            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Reporte"))
             //{
-            //    SubsidiosNoSQLReporte abrir = new SubsidiosNoSQLReporte();
+            //    SubsidiosNoSQLNoSQLReporte abrir = new SubsidiosNoSQLNoSQLReporte();
             //    abrir.Show();
             //}
 
-            //if (infoIdentidad.Equals("SubsidiosNoSQL") & infoAcciones.Equals("Actualizar"))
+            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Actualizar"))
             //{
-            //    SubsidiosNoSQLActualizar abrir = new SubsidiosNoSQLActualizar();
+            //    SubsidiosNoSQLNoSQLActualizar abrir = new SubsidiosNoSQLNoSQLActualizar();
             //    abrir.Show();
             //}
 
-            //if (infoIdentidad.Equals("SubsidiosNoSQL") & infoAcciones.Equals("Borrar"))
+            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Borrar"))
             //{
-            //    SubsidiosNoSQLBorrar abrir = new SubsidiosNoSQLBorrar();
+            //    SubsidiosNoSQLNoSQLBorrar abrir = new SubsidiosNoSQLNoSQLBorrar();
             //    abrir.Show();
             //}
 
-            //if (infoIdentidad.Equals("SubsidiosNoSQL") & infoAcciones.Equals("Añadir"))
+            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Añadir"))
             //{
-            //    SubsidiosNoSQLAñadir abrir = new SubsidiosNoSQLAñadir();
+            //    SubsidiosNoSQLNoSQLAñadir abrir = new SubsidiosNoSQLNoSQLAñadir();
             //    abrir.Show();
             //}
             //if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Reporte"))
