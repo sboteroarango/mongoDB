@@ -41,7 +41,7 @@ namespace SubsidiosNoSQL.Formularios
             }
             else
             {
-                MessageBox.Show("no se puede borrar el beneficiario porque tiene SubsidiosNoSQL asociados");
+                MessageBox.Show("no se puede borrar el beneficiario porque tiene Subsidios asociados");
             }
         }
     }

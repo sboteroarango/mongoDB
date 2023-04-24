@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace SubsidiosNoSQL.Formularios
 {
-    public partial class SubsidiosNoSQLAñadir : Form
+    public partial class SubsidiosAñadir : Form
     {
-        public SubsidiosNoSQLAñadir()
+        public SubsidiosAñadir()
         {
             InitializeComponent();
         }
 
-        private void SubsidiosNoSQLAñadir_Load(object sender, EventArgs e)
+        private void SubsidiosAñadir_Load(object sender, EventArgs e)
         {
             inicializaListBoxAños();
             inicializaListBoxProgramas();
@@ -71,7 +71,7 @@ namespace SubsidiosNoSQL.Formularios
                 MessageBox.Show("Debe colocar un valor");
             }
             else { 
-            AccesoDatos.AñadirSubsidiosNoSQL(infoPrograma, año, mes, valor, beneficiario);
+            AccesoDatos.AñadirSubsidios(infoPrograma, año, mes, valor, beneficiario);
             MessageBox.Show("Subsidio añadido");
             }
             

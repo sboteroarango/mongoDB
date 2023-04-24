@@ -1,6 +1,6 @@
 ﻿namespace SubsidiosNoSQL.Formularios
 {
-    partial class SubsidiosNoSQLReporte
+    partial class SubsidiosReporte
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBoxSubsidiosNoSQL = new ListBox();
+            listBoxSubsidios = new ListBox();
             textBoxMes = new TextBox();
             Ir = new Button();
             textBoxAño = new TextBox();
@@ -43,14 +43,14 @@
             label6 = new Label();
             SuspendLayout();
             // 
-            // listBoxSubsidiosNoSQL
+            // listBoxSubsidios
             // 
-            listBoxSubsidiosNoSQL.FormattingEnabled = true;
-            listBoxSubsidiosNoSQL.ItemHeight = 25;
-            listBoxSubsidiosNoSQL.Location = new Point(63, 176);
-            listBoxSubsidiosNoSQL.Name = "listBoxSubsidiosNoSQL";
-            listBoxSubsidiosNoSQL.Size = new Size(102, 179);
-            listBoxSubsidiosNoSQL.TabIndex = 0;
+            listBoxSubsidios.FormattingEnabled = true;
+            listBoxSubsidios.ItemHeight = 25;
+            listBoxSubsidios.Location = new Point(63, 176);
+            listBoxSubsidios.Name = "listBoxSubsidios";
+            listBoxSubsidios.Size = new Size(102, 179);
+            listBoxSubsidios.TabIndex = 0;
             // 
             // textBoxMes
             // 
@@ -149,9 +149,9 @@
             label6.Name = "label6";
             label6.Size = new Size(87, 25);
             label6.TabIndex = 12;
-            label6.Text = "SubsidiosNoSQL";
+            label6.Text = "Subsidios";
             // 
-            // SubsidiosNoSQLReporte
+            // SubsidiosReporte
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -168,17 +168,17 @@
             Controls.Add(textBoxAño);
             Controls.Add(Ir);
             Controls.Add(textBoxMes);
-            Controls.Add(listBoxSubsidiosNoSQL);
-            Name = "SubsidiosNoSQLReporte";
-            Text = "Reporte de SubsidiosNoSQL";
-            Load += SubsidiosNoSQLReporte_Load;
+            Controls.Add(listBoxSubsidios);
+            Name = "SubsidiosReporte";
+            Text = "Reporte de Subsidios";
+            Load += SubsidiosReporte_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ListBox listBoxSubsidiosNoSQL;
+        private ListBox listBoxSubsidios;
         private TextBox textBoxMes;
         private Button Ir;
         private TextBox textBoxAño;

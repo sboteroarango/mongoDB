@@ -1,6 +1,6 @@
 ﻿namespace SubsidiosNoSQL.Formularios
 {
-    partial class SubsidiosNoSQLAñadir
+    partial class SubsidiosAñadir
     {
         /// <summary>
         /// Required designer variable.
@@ -139,7 +139,7 @@
             Añadir.UseVisualStyleBackColor = true;
             Añadir.Click += Añadir_Click;
             // 
-            // SubsidiosNoSQLAñadir
+            // SubsidiosAñadir
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -155,9 +155,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textBoxValor);
-            Name = "SubsidiosNoSQLAñadir";
-            Text = "SubsidiosNoSQLAñadir";
-            Load += SubsidiosNoSQLAñadir_Load;
+            Name = "SubsidiosAñadir";
+            Text = "SubsidiosAñadir";
+            Load += SubsidiosAñadir_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -1,4 +1,4 @@
-﻿namespace SubsidiosNoSQLNoSQL.Formularios
+﻿namespace SubsidiosNoSQL.Formularios
 {
     partial class ProgramasReporte
     {

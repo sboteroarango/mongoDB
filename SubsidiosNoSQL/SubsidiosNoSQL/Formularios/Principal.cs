@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SubsidiosNoSQLNoSQL.Formularios
+namespace SubsidiosNoSQL.Formularios
 {
     public partial class Principal : Form
     {
@@ -42,116 +42,116 @@ namespace SubsidiosNoSQLNoSQL.Formularios
 
                 abrir.Show();
             }
-            //if (infoIdentidad.Equals("Programas") & infoAcciones.Equals("Actualizar"))
-            //{
-            //    ProgramasActualizar abrir = new ProgramasActualizar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Programas") & infoAcciones.Equals("Actualizar"))
+            {
+                ProgramasActualizar abrir = new ProgramasActualizar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Programas") & infoAcciones.Equals("Borrar"))
-            //{
-            //    ProgramasBorrar abrir = new ProgramasBorrar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Programas") & infoAcciones.Equals("Borrar"))
+            {
+                ProgramasBorrar abrir = new ProgramasBorrar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Programas") & infoAcciones.Equals("Añadir"))
-            //{
-            //    ProgramasAñadir abrir = new ProgramasAñadir();
-            //    abrir.Show();
-            //}
-            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Reporte"))
-            //{
-            //    SubsidiosNoSQLNoSQLReporte abrir = new SubsidiosNoSQLNoSQLReporte();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Programas") & infoAcciones.Equals("Añadir"))
+            {
+                ProgramasAñadir abrir = new ProgramasAñadir();
+                abrir.Show();
+            }
+            if (infoIdentidad.Equals("Subsidios") & infoAcciones.Equals("Reporte"))
+            {
+                SubsidiosReporte abrir = new SubsidiosReporte();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Actualizar"))
-            //{
-            //    SubsidiosNoSQLNoSQLActualizar abrir = new SubsidiosNoSQLNoSQLActualizar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Subsidios") & infoAcciones.Equals("Actualizar"))
+            {
+                SubsidiosActualizar abrir = new SubsidiosActualizar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Borrar"))
-            //{
-            //    SubsidiosNoSQLNoSQLBorrar abrir = new SubsidiosNoSQLNoSQLBorrar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Subsidios") & infoAcciones.Equals("Borrar"))
+            {
+                SubsidiosBorrar abrir = new SubsidiosBorrar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("SubsidiosNoSQLNoSQL") & infoAcciones.Equals("Añadir"))
-            //{
-            //    SubsidiosNoSQLNoSQLAñadir abrir = new SubsidiosNoSQLNoSQLAñadir();
-            //    abrir.Show();
-            //}
-            //if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Reporte"))
-            //{
-            //    BeneficiariosReporte abrir = new BeneficiariosReporte();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Subsidios") & infoAcciones.Equals("Añadir"))
+            {
+                SubsidiosAñadir abrir = new SubsidiosAñadir();
+                abrir.Show();
+            }
+            if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Reporte"))
+            {
+                BeneficiariosReporte abrir = new BeneficiariosReporte();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Actualizar"))
-            //{
-            //    BeneficiariosActualizar abrir = new BeneficiariosActualizar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Actualizar"))
+            {
+                BeneficiariosActualizar abrir = new BeneficiariosActualizar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Borrar"))
-            //{
-            //    BeneficiariosBorrar abrir = new BeneficiariosBorrar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Borrar"))
+            {
+                BeneficiariosBorrar abrir = new BeneficiariosBorrar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Añadir"))
-            //{
-            //    BeneficiariosAñadir abrir = new BeneficiariosAñadir();
-            //    abrir.Show();
-            //}
-            //if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Reporte"))
-            //{
-            //    MunicipiosReporte abrir = new MunicipiosReporte();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Beneficiarios") & infoAcciones.Equals("Añadir"))
+            {
+                BeneficiariosAñadir abrir = new BeneficiariosAñadir();
+                abrir.Show();
+            }
+            if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Reporte"))
+            {
+                MunicipiosReporte abrir = new MunicipiosReporte();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Actualizar"))
-            //{
-            //    MunicipiosActualizar abrir = new MunicipiosActualizar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Actualizar"))
+            {
+                MunicipiosActualizar abrir = new MunicipiosActualizar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Borrar"))
-            //{
-            //    MunicipiosBorrar abrir = new MunicipiosBorrar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Borrar"))
+            {
+                MunicipiosBorrar abrir = new MunicipiosBorrar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Añadir"))
-            //{
-            //    MunicipiosAñadir abrir = new MunicipiosAñadir();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Municipios") & infoAcciones.Equals("Añadir"))
+            {
+                MunicipiosAñadir abrir = new MunicipiosAñadir();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Reporte"))
-            //{
-            //    ProgramasReporte abrir = new ProgramasReporte();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Reporte"))
+            {
+                ProgramasReporte abrir = new ProgramasReporte();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Actualizar"))
-            //{
-            //    DepartamentosActualizar abrir = new DepartamentosActualizar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Actualizar"))
+            {
+                DepartamentosActualizar abrir = new DepartamentosActualizar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Borrar"))
-            //{
-            //    DepartamentosBorrar abrir = new DepartamentosBorrar();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Borrar"))
+            {
+                DepartamentosBorrar abrir = new DepartamentosBorrar();
+                abrir.Show();
+            }
 
-            //if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Añadir"))
-            //{
-            //    DepartamentosAñadir abrir = new DepartamentosAñadir();
-            //    abrir.Show();
-            //}
+            if (infoIdentidad.Equals("Departamentos") & infoAcciones.Equals("Añadir"))
+            {
+                DepartamentosAñadir abrir = new DepartamentosAñadir();
+                abrir.Show();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 ﻿namespace SubsidiosNoSQL.Formularios
 {
-    partial class SubsidiosNoSQLBorrar
+    partial class SubsidiosBorrar
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label6 = new Label();
-            listBoxSubsidiosNoSQL = new ListBox();
+            listBoxSubsidios = new ListBox();
             Borrar = new Button();
             SuspendLayout();
             // 
@@ -40,16 +40,16 @@
             label6.Name = "label6";
             label6.Size = new Size(87, 25);
             label6.TabIndex = 16;
-            label6.Text = "SubsidiosNoSQL";
+            label6.Text = "Subsidios";
             // 
-            // listBoxSubsidiosNoSQL
+            // listBoxSubsidios
             // 
-            listBoxSubsidiosNoSQL.FormattingEnabled = true;
-            listBoxSubsidiosNoSQL.ItemHeight = 25;
-            listBoxSubsidiosNoSQL.Location = new Point(323, 156);
-            listBoxSubsidiosNoSQL.Name = "listBoxSubsidiosNoSQL";
-            listBoxSubsidiosNoSQL.Size = new Size(148, 179);
-            listBoxSubsidiosNoSQL.TabIndex = 15;
+            listBoxSubsidios.FormattingEnabled = true;
+            listBoxSubsidios.ItemHeight = 25;
+            listBoxSubsidios.Location = new Point(323, 156);
+            listBoxSubsidios.Name = "listBoxSubsidios";
+            listBoxSubsidios.Size = new Size(148, 179);
+            listBoxSubsidios.TabIndex = 15;
             // 
             // Borrar
             // 
@@ -61,17 +61,17 @@
             Borrar.UseVisualStyleBackColor = true;
             Borrar.Click += Borrar_Click;
             // 
-            // SubsidiosNoSQLBorrar
+            // SubsidiosBorrar
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(Borrar);
             Controls.Add(label6);
-            Controls.Add(listBoxSubsidiosNoSQL);
-            Name = "SubsidiosNoSQLBorrar";
-            Text = "SubsidiosNoSQLBorrar";
-            Load += SubsidiosNoSQLBorrar_Load;
+            Controls.Add(listBoxSubsidios);
+            Name = "SubsidiosBorrar";
+            Text = "SubsidiosBorrar";
+            Load += SubsidiosBorrar_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -79,7 +79,7 @@
         #endregion
 
         private Label label6;
-        private ListBox listBoxSubsidiosNoSQL;
+        private ListBox listBoxSubsidios;
         private Button Borrar;
     }
 }

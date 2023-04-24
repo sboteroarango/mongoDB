@@ -41,7 +41,7 @@ namespace SubsidiosNoSQL.Formularios
             }
             else
             {
-                MessageBox.Show("No se puede borrar porque ya se han hecho SubsidiosNoSQL con este departamento");
+                MessageBox.Show("No se puede borrar porque ya se han hecho Subsidios con este departamento");
             }
         }
     }

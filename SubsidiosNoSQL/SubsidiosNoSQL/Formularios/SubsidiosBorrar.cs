@@ -10,32 +10,32 @@ using System.Windows.Forms;
 
 namespace SubsidiosNoSQL.Formularios
 {
-    public partial class SubsidiosNoSQLBorrar : Form
+    public partial class SubsidiosBorrar : Form
     {
-        public SubsidiosNoSQLBorrar()
+        public SubsidiosBorrar()
         {
             InitializeComponent();
         }
 
-        private void SubsidiosNoSQLBorrar_Load(object sender, EventArgs e)
+        private void SubsidiosBorrar_Load(object sender, EventArgs e)
         {
-            inicializaListBoxSubsidiosNoSQL();
+            inicializaListBoxSubsidios();
         }
 
-        private void inicializaListBoxSubsidiosNoSQL()
+        private void inicializaListBoxSubsidios()
         {
-            listBoxSubsidiosNoSQL.DataSource = null;
-            listBoxSubsidiosNoSQL.DataSource = AccesoDatos.ObtenerListaSubsidiosNoSQL();
-            listBoxSubsidiosNoSQL.DisplayMember = "ID";
-            listBoxSubsidiosNoSQL.SelectedIndex = 0;
+            listBoxSubsidios.DataSource = null;
+            listBoxSubsidios.DataSource = AccesoDatos.ObtenerListaSubsidios();
+            listBoxSubsidios.DisplayMember = "ID";
+            listBoxSubsidios.SelectedIndex = 0;
         }
 
         private void Borrar_Click(object sender, EventArgs e)
         {
-            string idSubsidio = listBoxSubsidiosNoSQL.SelectedItem!.ToString();
+            string idSubsidio = listBoxSubsidios.SelectedItem!.ToString();
             MessageBox.Show("Borrado Exitoso");
             AccesoDatos.BorrarSubsidio(idSubsidio);
-            inicializaListBoxSubsidiosNoSQL();
+            inicializaListBoxSubsidios();
         }
     }
 }

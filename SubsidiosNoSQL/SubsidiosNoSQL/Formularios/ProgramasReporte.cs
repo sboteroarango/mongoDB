@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SubsidiosNoSQLNoSQL.Formularios
+namespace SubsidiosNoSQL.Formularios
 {
     public partial class ProgramasReporte : Form
     {

@@ -10,31 +10,31 @@ using System.Windows.Forms;
 
 namespace SubsidiosNoSQL.Formularios
 {
-    public partial class SubsidiosNoSQLReporte : Form
+    public partial class SubsidiosReporte : Form
     {
-        public SubsidiosNoSQLReporte()
+        public SubsidiosReporte()
         {
             InitializeComponent();
         }
 
 
 
-        private void SubsidiosNoSQLReporte_Load(object sender, EventArgs e)
+        private void SubsidiosReporte_Load(object sender, EventArgs e)
         {
-            inicializaListBoxSubsidiosNoSQL();
+            inicializaListBoxSubsidios();
         }
 
-        private void inicializaListBoxSubsidiosNoSQL()
+        private void inicializaListBoxSubsidios()
         {
-            listBoxSubsidiosNoSQL.DataSource = null;
-            listBoxSubsidiosNoSQL.DataSource = AccesoDatos.ObtenerListaSubsidiosNoSQL();
-            listBoxSubsidiosNoSQL.DisplayMember = "ID";
-            listBoxSubsidiosNoSQL.SelectedIndex = 0;
+            listBoxSubsidios.DataSource = null;
+            listBoxSubsidios.DataSource = AccesoDatos.ObtenerListaSubsidios();
+            listBoxSubsidios.DisplayMember = "ID";
+            listBoxSubsidios.SelectedIndex = 0;
         }
 
         private void Ir_Click(object sender, EventArgs e)
         {
-            String infoSubsidio = listBoxSubsidiosNoSQL.SelectedItem!.ToString();
+            String infoSubsidio = listBoxSubsidios.SelectedItem!.ToString();
             textBoxMes.Text = AccesoDatos.ObtenerMes(infoSubsidio).ToString();
             textBoxAño.Text = AccesoDatos.ObtenerAño(infoSubsidio).ToString();
             textBoxPrograma.Text = AccesoDatos.ObtenerPrograma(infoSubsidio).ToString();

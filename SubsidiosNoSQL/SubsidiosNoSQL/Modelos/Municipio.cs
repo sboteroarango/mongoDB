@@ -16,20 +16,20 @@ namespace Subsidios.Modelos
         public string? Id { get; set; }
 
         [BsonElement("ID")]
-        public string? codigo { get; set; }
+        public double codigo { get; set; }
 
         [BsonElement("NOMBREMUNICIPIO")]
         public string? nombre { get; set; }
 
         [BsonElement("DEPARTAMENTO")]
-        public string? departamento { get; set; }
+        public double departamento { get; set; }
 
         public Municipio()
         {
             Id = string.Empty;
-            codigo = string.Empty;
+            codigo = 0;
             nombre = string.Empty;
-            departamento = string.Empty;
+            departamento = 0;
         }
     }
 }

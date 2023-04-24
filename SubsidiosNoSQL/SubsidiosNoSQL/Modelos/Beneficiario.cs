@@ -17,13 +17,13 @@ namespace Subsidios.Modelos
         [BsonElement("ID")]
         public long codigo { get; set; }
         [BsonElement("MUNICIPIO")]
-        public string? municipio { get; set;}
+        public double municipio { get; set;}
 
         public Beneficiario()
         {
             Id = string.Empty;
             codigo = 0;
-            municipio = string.Empty;
+            municipio = 0;
         }
     }
 }

@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace SubsidiosNoSQL.Formularios
 {
-    public partial class SubsidiosNoSQLActualizar : Form
+    public partial class SubsidiosActualizar : Form
     {
-        public SubsidiosNoSQLActualizar()
+        public SubsidiosActualizar()
         {
             InitializeComponent();
         }
 
-        private void SubsidiosNoSQLActualizar_Load(object sender, EventArgs e)
+        private void SubsidiosActualizar_Load(object sender, EventArgs e)
         {
-            inicializaListBoxSubsidiosNoSQL();
+            inicializaListBoxSubsidios();
             inicializaListBoxAños();
             inicializaListBoxProgramas();
             inicializaListBoxMeses();
@@ -28,12 +28,12 @@ namespace SubsidiosNoSQL.Formularios
 
 
 
-        private void inicializaListBoxSubsidiosNoSQL()
+        private void inicializaListBoxSubsidios()
         {
-            listBoxSubsidiosNoSQL.DataSource = null;
-            listBoxSubsidiosNoSQL.DataSource = AccesoDatos.ObtenerListaSubsidiosNoSQL();
-            listBoxSubsidiosNoSQL.DisplayMember = "ID";
-            listBoxSubsidiosNoSQL.SelectedIndex = 0;
+            listBoxSubsidios.DataSource = null;
+            listBoxSubsidios.DataSource = AccesoDatos.ObtenerListaSubsidios();
+            listBoxSubsidios.DisplayMember = "ID";
+            listBoxSubsidios.SelectedIndex = 0;
         }
 
         private void inicializaListBoxMeses()
@@ -83,7 +83,7 @@ namespace SubsidiosNoSQL.Formularios
             String infoPrograma = listBoxProgramas.SelectedItem!.ToString()!;
             String año = listBoxAños.SelectedItem!.ToString()!;
             String mes = listBoxMeses.SelectedItem!.ToString()!;
-            String id = listBoxSubsidiosNoSQL.SelectedItem!.ToString()!;
+            String id = listBoxSubsidios.SelectedItem!.ToString()!;
             String valor = textBoxValor.Text;
             String beneficiario = listBoxBeneficiarios.SelectedItem!.ToString()!;
             if (valor.Equals(""))
@@ -92,7 +92,7 @@ namespace SubsidiosNoSQL.Formularios
             }
             else
             {
-                AccesoDatos.ActualizarSubsidiosNoSQL(infoPrograma, año, mes, id, valor, beneficiario);
+                AccesoDatos.ActualizarSubsidios(infoPrograma, año, mes, id, valor, beneficiario);
                 MessageBox.Show("Actualización exitosa");
 
             }

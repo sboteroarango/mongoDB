@@ -1,6 +1,6 @@
 ﻿namespace SubsidiosNoSQL.Formularios
 {
-    partial class SubsidiosNoSQLActualizar
+    partial class SubsidiosActualizar
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label6 = new Label();
-            listBoxSubsidiosNoSQL = new ListBox();
+            listBoxSubsidios = new ListBox();
             label5 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -51,16 +51,16 @@
             label6.Name = "label6";
             label6.Size = new Size(87, 25);
             label6.TabIndex = 14;
-            label6.Text = "SubsidiosNoSQL";
+            label6.Text = "Subsidios";
             // 
-            // listBoxSubsidiosNoSQL
+            // listBoxSubsidios
             // 
-            listBoxSubsidiosNoSQL.FormattingEnabled = true;
-            listBoxSubsidiosNoSQL.ItemHeight = 25;
-            listBoxSubsidiosNoSQL.Location = new Point(81, 166);
-            listBoxSubsidiosNoSQL.Name = "listBoxSubsidiosNoSQL";
-            listBoxSubsidiosNoSQL.Size = new Size(102, 179);
-            listBoxSubsidiosNoSQL.TabIndex = 13;
+            listBoxSubsidios.FormattingEnabled = true;
+            listBoxSubsidios.ItemHeight = 25;
+            listBoxSubsidios.Location = new Point(81, 166);
+            listBoxSubsidios.Name = "listBoxSubsidios";
+            listBoxSubsidios.Size = new Size(102, 179);
+            listBoxSubsidios.TabIndex = 13;
             // 
             // label5
             // 
@@ -169,7 +169,7 @@
             label7.TabIndex = 33;
             label7.Text = "variables a actualizar";
             // 
-            // SubsidiosNoSQLActualizar
+            // SubsidiosActualizar
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -187,10 +187,10 @@
             Controls.Add(label1);
             Controls.Add(textBoxValor);
             Controls.Add(label6);
-            Controls.Add(listBoxSubsidiosNoSQL);
-            Name = "SubsidiosNoSQLActualizar";
-            Text = "SubsidiosNoSQLActualizar";
-            Load += SubsidiosNoSQLActualizar_Load;
+            Controls.Add(listBoxSubsidios);
+            Name = "SubsidiosActualizar";
+            Text = "SubsidiosActualizar";
+            Load += SubsidiosActualizar_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -198,7 +198,7 @@
         #endregion
 
         private Label label6;
-        private ListBox listBoxSubsidiosNoSQL;
+        private ListBox listBoxSubsidios;
         private Label label5;
         private Label label3;
         private Label label2;
