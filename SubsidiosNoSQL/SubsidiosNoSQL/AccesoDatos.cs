@@ -205,7 +205,7 @@ namespace SubsidiosNoSQL
             var coleccionMunicipios = configDB.municipiosCollectionName;
             Municipio unMunicipio = new Municipio();
             unMunicipio.Id = ObtenerObjectIdMunicipio(municipio);
-            unMunicipio.codigo = Convert.ToInt32(ObtenerIdMunicipio(municipio));
+            unMunicipio.codigo = Convert.ToDouble(ObtenerIdMunicipio(municipio));
             unMunicipio.nombre = actualizacion;
             unMunicipio.departamento = Convert.ToInt32(ObtenerDepartamentoMunicipio(municipio));
 
@@ -285,7 +285,7 @@ namespace SubsidiosNoSQL
             Beneficiario unBeneficiario = new Beneficiario();
             unBeneficiario.Id = ObtenerObjectIdBeneficiario(beneficiario);
             unBeneficiario.codigo = Convert.ToInt32(actualizacion);
-            unBeneficiario.municipio = Convert.ToInt32(ObtenerMunicipioBeneficiario(beneficiario));
+            unBeneficiario.municipio = Convert.ToDouble(ObtenerMunicipioBeneficiario(beneficiario));
 
 
 
@@ -310,7 +310,7 @@ namespace SubsidiosNoSQL
             foreach (Beneficiario unBeneficiario in listaBeneficiarios)
                 listaNombres.Add(unBeneficiario.codigo!.ToString());
 
-            return listaNombres.Count == 0;
+            return !(listaNombres.Count == 0);
 
         }
 
@@ -399,7 +399,7 @@ namespace SubsidiosNoSQL
                 var miColeccion = miDB.GetCollection<Municipio>(coleccionMunicipios);
                 Municipio unMunicipio = new Municipio
                 {
-                    codigo = Convert.ToInt32(idMunicipio),
+                    codigo = Convert.ToDouble(idMunicipio),
                     nombre = municipio,
                     departamento = ObtenerIdDepartamento(departamento)
                 };
@@ -454,7 +454,7 @@ namespace SubsidiosNoSQL
                 Beneficiario unBeneficiario = new Beneficiario
                 {
                     codigo = Convert.ToInt32(idBeneficiario),
-                    municipio = Convert.ToInt32(municipioa)
+                    municipio = Convert.ToDouble(ObtenerIdMunicipio(municipioa))
                 };
                 miColeccion.InsertOne(unBeneficiario);
 
@@ -509,12 +509,12 @@ namespace SubsidiosNoSQL
         {
             
             int cantidadSubsidios = 0;
-            bool tiene = true;
+           
             string id = ObtenerIdMunicipio(municipio);
             var clienteDB = new MongoClient(configDB.ConnectionString);
             var miDB = clienteDB.GetDatabase(configDB.DatabaseName);
             var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
-            var filtro = new BsonDocument { { "MUNICIPIO", municipio } };
+            var filtro = new BsonDocument { { "MUNICIPIO", Convert.ToDouble(id) } };
 
             var listaBeneficiarios= miDB.GetCollection<Beneficiario>(coleccionBeneficiarios)
                 .Find(filtro)
@@ -794,7 +794,7 @@ namespace SubsidiosNoSQL
             var clienteDB2 = new MongoClient(configDB.ConnectionString);
             var miDB2 = clienteDB2.GetDatabase(configDB.DatabaseName);
             var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
-            var filtro2 = new BsonDocument { { "MUNICIPIO", Convert.ToInt32(ObtenerIdMunicipio(municipio)) } };
+            var filtro2 = new BsonDocument { { "MUNICIPIO", Convert.ToDouble(ObtenerIdMunicipio(municipio)) } };
 
             var listaBeneficiarios = miDB2.GetCollection<Beneficiario>(coleccionBeneficiarios)
                     .Find(filtro2)
@@ -1144,7 +1144,6 @@ public static int ObtenerCantidadBeneficiarios(string idSubsidio)
         {
             int valor = 0;
             int programaA = Convert.ToInt32(ObtenerIdPrograma(programa));
-            var clienteDB = new MongoClient(configDB.ConnectionString);
 
             //obtener los beneficiarios de los subsidios que cuentan con ese programa, mes y año
 
@@ -1167,7 +1166,7 @@ public static int ObtenerCantidadBeneficiarios(string idSubsidio)
             var clienteDB2 = new MongoClient(configDB.ConnectionString);
             var miDB2 = clienteDB2.GetDatabase(configDB.DatabaseName);
             var coleccionBeneficiarios = configDB.beneficiariosCollectionName;
-            var filtro2 = new BsonDocument { { "MUNICIPIO", Convert.ToInt32(ObtenerIdMunicipio(municipio)) } };
+            var filtro2 = new BsonDocument { { "MUNICIPIO", Convert.ToDouble(ObtenerIdMunicipio(municipio)) } };
 
             var listaBeneficiarios = miDB2.GetCollection<Beneficiario>(coleccionBeneficiarios)
                     .Find(filtro2)
