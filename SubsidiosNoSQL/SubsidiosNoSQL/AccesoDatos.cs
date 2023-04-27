@@ -290,7 +290,7 @@ namespace SubsidiosNoSQL
 
 
             var miColeccion = miDB.GetCollection<Beneficiario>(coleccionBeneficiarios);
-            var resultadoActualizacion = miColeccion.ReplaceOne(documento => documento.codigo == Convert.ToInt32(beneficiario),
+            var resultadoActualizacion = miColeccion.ReplaceOne(documento => documento.codigo == Convert.ToDouble(beneficiario),
                 unBeneficiario);
         }
 
